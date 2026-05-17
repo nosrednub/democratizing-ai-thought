@@ -68,30 +68,35 @@ const scriptures = [
     text: "For the poor shall never cease out of the land: therefore I command thee, saying, Thou shalt open thine hand wide unto thy brother, to thy poor, and to thy needy, in thy land.",
     theme: "Open Access",
     color: "cobalt",
+    url: "https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng",
   },
   {
     reference: "Deuteronomy 15:1",
     text: "At the end of every seven years thou shalt make a release.",
     theme: "Debt Forgiveness",
     color: "gold",
+    url: "https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng",
   },
   {
     reference: "Mosiah 4:26",
     text: "And now, for the sake of these things which I have spoken unto you—that is, for the sake of retaining a remission of your sins from day to day, that ye may walk guiltless before God—I would that ye should impart of your substance to the poor, every man according to that which he hath.",
     theme: "Imparting Substance",
     color: "terracotta",
+    url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/4?lang=eng",
   },
   {
     reference: "4 Nephi 1:3",
     text: "And they had all things common among them; therefore there were not rich and poor, bond and free, but they were all made free, and partakers of the heavenly gift.",
     theme: "True Equality",
     color: "cobalt",
+    url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/4-ne/1?lang=eng",
   },
   {
     reference: "Jacob 2:19",
     text: "And after ye have obtained a hope in Christ ye shall obtain riches, if ye seek them; and ye will seek them for the intent to do good—to clothe the naked, and to feed the hungry, and to liberate the captive, and administer relief to the sick and the afflicted.",
     theme: "Purpose of Wealth",
     color: "gold",
+    url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/jacob/2?lang=eng",
   },
 ];
 
@@ -99,6 +104,7 @@ const applications = [
   {
     principle: "Debt Forgiveness",
     scripture: "Deut 15:1",
+    scriptureUrl: "https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng",
     ancient: "Releasing financial debts every 7 years to prevent a permanent underclass",
     modern: "Contribute to open-source AI models (Llama, Mistral, DeepSeek) that remove licensing 'debts' for smaller developers",
     icon: "🔓",
@@ -106,6 +112,7 @@ const applications = [
   {
     principle: "Open Thine Hand",
     scripture: "Deut 15:11",
+    scriptureUrl: "https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng",
     ancient: "Generous giving proportional to the need of the poor",
     modern: "Build efficient, optimized models that run on consumer hardware, reducing compute cost barriers",
     icon: "🤲",
@@ -113,6 +120,7 @@ const applications = [
   {
     principle: "Impart Substance",
     scripture: "Mosiah 4:26",
+    scriptureUrl: "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/4?lang=eng",
     ancient: "Sharing food, clothing, and wealth with the needy",
     modern: "Develop free or low-cost AI tools specifically for nonprofits, educators, and developing nations",
     icon: "🌱",
@@ -120,6 +128,7 @@ const applications = [
   {
     principle: "All Things Common",
     scripture: "4 Nephi 1:3",
+    scriptureUrl: "https://www.churchofjesuschrist.org/study/scriptures/bofm/4-ne/1?lang=eng",
     ancient: "Eliminating class distinctions through shared resources",
     modern: "Create intuitive interfaces requiring no advanced technical skills — democratize AI for the average person",
     icon: "🌐",
@@ -127,6 +136,7 @@ const applications = [
   {
     principle: "Seek Riches to Do Good",
     scripture: "Jacob 2:19",
+    scriptureUrl: "https://www.churchofjesuschrist.org/study/scriptures/bofm/jacob/2?lang=eng",
     ancient: "Using wealth to bless others, not for pride",
     modern: "Design business models where enterprise profits subsidize free access tiers for students and low-income users",
     icon: "⚖️",
@@ -222,6 +232,22 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
+// ─── Citation Badge ───────────────────────────────────────────────────────────
+
+function CiteBadge({ label, url }: { label: string; url: string }) {
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded border border-[#D4A843]/50 text-[#A07820] bg-[#D4A843]/10 hover:bg-[#D4A843]/20 transition-colors duration-150 no-underline ml-1"
+      title={`Source: ${label}`}
+    >
+      ↗ {label}
+    </a>
+  );
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -264,7 +290,7 @@ export default function Home() {
             <ScrollReveal>
               <div className="inline-flex items-center gap-2 bg-[#D4A843]/20 border border-[#D4A843]/40 rounded-full px-4 py-1.5 mb-6">
                 <span className="text-[#D4A843] text-xs font-semibold uppercase tracking-widest">
-                  Come Follow Me · May 11–17 · Deuteronomy 15
+                  Come Follow Me · May 11–17 · Deuteronomy 6–8; 15; 18; 29–30; 34
                 </span>
               </div>
             </ScrollReveal>
@@ -321,6 +347,16 @@ export default function Home() {
                 national policy — they were about the condition of the heart. The lesson for May 11–17
                 centers on love, remembrance, and radical generosity toward the vulnerable.
               </p>
+              <div className="mt-4">
+                <a
+                  href="https://www.churchofjesuschrist.org/study/manual/come-follow-me-for-home-and-church-old-testament-2026/20?lang=eng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-semibold text-[#1B4FD8] hover:underline"
+                >
+                  ↗ Official Come, Follow Me Lesson — May 11–17 (churchofjesuschrist.org)
+                </a>
+              </div>
             </div>
           </ScrollReveal>
 
@@ -343,8 +379,8 @@ export default function Home() {
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className={`text-xs font-semibold uppercase tracking-wide ${
-                          activeScripture === i ? "text-[#A8C4FF]" : "text-[#1B4FD8]"
+                        <span className={`font-display font-semibold text-sm ${
+                          activeScripture === i ? "text-white" : "text-[#1B4FD8]"
                         }`}>
                           {s.reference}
                         </span>
@@ -376,12 +412,22 @@ export default function Home() {
                     "{scriptures[activeScripture].text}"
                   </blockquote>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1 h-12 bg-gradient-to-b from-[#D4A843] to-[#1B4FD8] rounded-full" />
-                  <div>
-                    <p className="text-xs text-[#888] uppercase tracking-wide">Theme</p>
-                    <p className="font-semibold text-[#1C1C1E]">{scriptures[activeScripture].theme}</p>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-1 h-12 bg-gradient-to-b from-[#D4A843] to-[#1B4FD8] rounded-full" />
+                    <div>
+                      <p className="text-xs text-[#888] uppercase tracking-wide">Theme</p>
+                      <p className="font-semibold text-[#1C1C1E]">{scriptures[activeScripture].theme}</p>
+                    </div>
                   </div>
+                  <a
+                    href={scriptures[activeScripture].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-[#1B4FD8] hover:underline flex items-center gap-1 flex-shrink-0"
+                  >
+                    ↗ Read in Scriptures
+                  </a>
                 </div>
               </div>
 
@@ -407,6 +453,16 @@ export default function Home() {
                     to start their new life — never empty-handed.
                   </p>
                 </div>
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <a
+                    href="https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-[#D4A843] hover:underline flex items-center gap-1"
+                  >
+                    ↗ Read Deuteronomy 15 (churchofjesuschrist.org)
+                  </a>
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -430,16 +486,59 @@ export default function Home() {
                 threatens to create a permanent "intelligence gap" between the wealthy and the rest of
                 the world. The UN has likened this to the Great Divergence of the Industrial Revolution.
               </p>
+              <div className="mt-3">
+                <a
+                  href="https://www.undp.org/sites/g/files/zskgke326/files/2025-12/why-ai-may-widen-inequality-between-countries.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#D4A843] hover:underline"
+                >
+                  ↗ UNDP "The Next Great Divergence" Report, Dec 2025
+                </a>
+              </div>
             </div>
           </ScrollReveal>
 
           {/* Stat Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { label: "Developed Nations AI Usage", value: 27.5, suffix: "%", note: "Q1 2026", color: "#1B4FD8" },
-              { label: "Developing Nations AI Usage", value: 15.4, suffix: "%", note: "Q1 2026", color: "#C4622D" },
-              { label: "Anthropic Compute Spend", value: 9.7, prefix: "$", suffix: "B", note: "2025 Total", color: "#D4A843" },
-              { label: "AI Adoption Gap", value: 12.1, suffix: "pts", note: "Widening yearly", color: "#5B8AF0" },
+              {
+                label: "Developed Nations AI Usage",
+                value: 27.5,
+                suffix: "%",
+                note: "Q1 2026 — Global North",
+                color: "#1B4FD8",
+                url: "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf",
+                cite: "Microsoft Q1 2026",
+              },
+              {
+                label: "Developing Nations AI Usage",
+                value: 15.4,
+                suffix: "%",
+                note: "Q1 2026 — Global South",
+                color: "#C4622D",
+                url: "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf",
+                cite: "Microsoft Q1 2026",
+              },
+              {
+                label: "Anthropic Compute Spend",
+                value: 9.7,
+                prefix: "$",
+                suffix: "B",
+                note: "2025 Total (Epoch AI est.)",
+                color: "#D4A843",
+                url: "https://epoch.ai/data-insights/company-spending-breakdown",
+                cite: "Epoch AI 2026",
+              },
+              {
+                label: "AI Adoption Gap",
+                value: 12.1,
+                suffix: "pts",
+                note: "Developed vs. Developing",
+                color: "#5B8AF0",
+                url: "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf",
+                cite: "Microsoft Q1 2026",
+              },
             ].map((stat, i) => (
               <ScrollReveal key={i} delay={i * 80}>
                 <div className="stat-card p-6">
@@ -447,7 +546,15 @@ export default function Home() {
                   <p className="font-display text-4xl font-bold mb-1" style={{ color: stat.color }}>
                     <AnimatedNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
                   </p>
-                  <p className="text-[#666] text-xs font-mono-data">{stat.note}</p>
+                  <p className="text-[#666] text-xs font-mono-data mb-2">{stat.note}</p>
+                  <a
+                    href={stat.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-semibold text-[#D4A843] hover:underline flex items-center gap-1"
+                  >
+                    ↗ {stat.cite}
+                  </a>
                 </div>
               </ScrollReveal>
             ))}
@@ -461,7 +568,15 @@ export default function Home() {
                 <h3 className="font-display text-lg font-semibold text-white mb-1">
                   AI Adoption: The Widening Gap
                 </h3>
-                <p className="text-[#8A9AB5] text-xs mb-6">% of working-age population using generative AI</p>
+                <p className="text-[#8A9AB5] text-xs mb-1">% of working-age population (15–64) using generative AI</p>
+                <a
+                  href="https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] font-semibold text-[#D4A843] hover:underline flex items-center gap-1 mb-4"
+                >
+                  ↗ Source: Microsoft AI Diffusion Report Q1 2026
+                </a>
                 <ResponsiveContainer width="100%" height={240}>
                   <LineChart data={aiGapTrendData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#333" />
@@ -501,7 +616,15 @@ export default function Home() {
                 <h3 className="font-display text-lg font-semibold text-white mb-1">
                   Where AI Money Goes
                 </h3>
-                <p className="text-[#8A9AB5] text-xs mb-6">Anthropic 2025 spend breakdown ($9.7B total)</p>
+                <p className="text-[#8A9AB5] text-xs mb-1">Anthropic 2025 spend breakdown ($9.7B total, Epoch AI est.)</p>
+                <a
+                  href="https://epoch.ai/data-insights/company-spending-breakdown"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] font-semibold text-[#D4A843] hover:underline flex items-center gap-1 mb-4"
+                >
+                  ↗ Source: Epoch AI / Visual Capitalist, Apr 2026
+                </a>
                 <div className="flex items-center gap-6">
                   <ResponsiveContainer width="60%" height={200}>
                     <PieChart>
@@ -549,7 +672,15 @@ export default function Home() {
               <h3 className="font-display text-lg font-semibold text-white mb-1">
                 AI Usage by Economic Region (Q1 2026)
               </h3>
-              <p className="text-[#8A9AB5] text-xs mb-6">% of working-age population (15–64) using generative AI — Microsoft Research</p>
+              <p className="text-[#8A9AB5] text-xs mb-1">% of working-age population (15–64) using generative AI</p>
+              <a
+                href="https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-semibold text-[#D4A843] hover:underline flex items-center gap-1 mb-4"
+              >
+                ↗ Source: Microsoft AI Diffusion Report Q1 2026
+              </a>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={aiAdoptionData} layout="vertical" barSize={28}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#333" horizontal={false} />
@@ -580,8 +711,16 @@ export default function Home() {
                   "The goal is to democratize access to AI so that every country and community can
                   benefit while protecting those most at risk from disruption."
                 </blockquote>
-                <p className="text-[#D4A843] text-sm font-semibold">— UN Development Programme Report, 2025</p>
-                <p className="text-[#8A9AB5] text-sm mt-4 leading-relaxed">
+                <p className="text-[#D4A843] text-sm font-semibold">— UNDP Human Development Report, Dec 2025</p>
+                <a
+                  href="https://www.undp.org/sites/g/files/zskgke326/files/2025-12/why-ai-may-widen-inequality-between-countries.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-[#D4A843] hover:underline flex items-center gap-1 mt-1 mb-4"
+                >
+                  ↗ "The Next Great Divergence" — UNDP, Dec 2025
+                </a>
+                <p className="text-[#8A9AB5] text-sm leading-relaxed">
                   AI is becoming as essential as electricity, roads, and the internet. Without intentional
                   action, billions will be left behind — invisible in the data, excluded from the economy.
                 </p>
@@ -591,7 +730,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Principles Bridge ──────────────────────────────────────────────── */}
+      {/* ── Principles Bridge ──────────────────────────────────────────────────── */}
       <section id="principles" className="py-20 bg-[#FAF6EF]">
         <div className="container">
           <ScrollReveal>
@@ -649,7 +788,14 @@ export default function Home() {
                       <p className="text-[#1B4FD8] text-xs font-bold text-center uppercase tracking-wide leading-tight">
                         {app.principle}
                       </p>
-                      <p className="text-[#888] text-xs mt-1 font-mono-data">{app.scripture}</p>
+                      <a
+                        href={app.scriptureUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#888] text-xs mt-1 font-mono-data hover:text-[#1B4FD8] hover:underline"
+                      >
+                        {app.scripture}
+                      </a>
                     </div>
                     {/* Content */}
                     <div className="p-6 flex-1 grid sm:grid-cols-2 gap-4">
@@ -704,6 +850,7 @@ export default function Home() {
                       <span className="text-[#555]">Current AI Industry Practice</span>
                     </div>
                   </div>
+                  <p className="text-[#aaa] text-xs mt-4 italic">Radar values are qualitative assessments for discussion, not empirical measurements.</p>
                 </div>
                 <ResponsiveContainer width="100%" height={300}>
                   <RadarChart data={principlesData}>
@@ -761,6 +908,7 @@ export default function Home() {
               {
                 title: "King Benjamin's Address",
                 reference: "Mosiah 4:16–26",
+                url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/4?lang=eng",
                 text: "We are all beggars before God. King Benjamin's revolutionary discourse on poverty commands us to give without judgment, recognizing that we ourselves depend entirely on God's grace.",
                 lesson: "We build AI not because we are superior, but because we are stewards of a gift we did not earn.",
                 icon: "👑",
@@ -768,35 +916,40 @@ export default function Home() {
               {
                 title: "The Zion Society",
                 reference: "4 Nephi 1:3",
-                text: "After Christ's visit, the Nephites achieved 200 years of peace because 'there were not rich and poor.' All things were held in common. This is the ultimate vision of a consecrated community.",
+                url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/4-ne/1?lang=eng",
+                text: "After Christ's visit, the Nephites achieved 200 years of peace because 'there were not rich and poor, bond and free, but they were all made free, and partakers of the heavenly gift.' All things were held in common.",
                 lesson: "Our goal is not just to build AI — it is to build toward a world where AI creates no new poor.",
                 icon: "✨",
               },
               {
                 title: "Jacob's Warning",
                 reference: "Jacob 2:13–19",
-                text: "Jacob rebuked the Nephites for seeking riches before the kingdom of God, causing pride and inequality. But he also showed the right path: seek riches to do good.",
+                url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/jacob/2?lang=eng",
+                text: "Jacob rebuked the Nephites for seeking riches before the kingdom of God, causing pride and inequality. But he also showed the right path: seek riches to do good — to clothe the naked, feed the hungry, and liberate the captive.",
                 lesson: "AI monetization is not wrong — but our primary motivation must be to bless, not to profit.",
                 icon: "⚖️",
               },
               {
-                title: "Lehi's Parallel",
-                reference: "2 Nephi 2:26–29",
-                text: "Lehi expanded Moses's teaching on choosing life, connecting it to the Atonement of Christ. We are free to act for ourselves — including choosing to use our skills for equity.",
-                lesson: "We choose daily whether our code serves the many or the few. Agency is a gift and a responsibility.",
+                title: "Lehi's Teaching on Agency",
+                reference: "2 Nephi 2:26–27",
+                url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/2-ne/2?lang=eng",
+                text: "Lehi taught that because of Christ's redemption, we are 'free forever, knowing good from evil; to act for ourselves.' Men are 'free to choose liberty and eternal life' or captivity — including in how we use our skills.",
+                lesson: "We are free to act for ourselves — including choosing to use our skills for equity and access.",
                 icon: "🌿",
               },
               {
                 title: "Alma's Community",
-                reference: "Alma 1:27",
-                text: "The people of Alma 'did not send away any who were naked, or that were hungry, or that were athirst, or that were sick, or that had not been nourished.' They gave according to what they had.",
+                reference: "Alma 1:27, 30",
+                url: "https://www.churchofjesuschrist.org/study/scriptures/bofm/alma/1?lang=eng",
+                text: "The people of Alma 'did impart of their substance, every man according to that which he had, to the poor, and the needy, and the sick' (v. 27). They 'did not send away any who were naked, or that were hungry, or that were athirst, or that were sick' (v. 30).",
                 lesson: "We give what we can: open-source code, free tiers, accessible documentation, mentorship.",
                 icon: "🤝",
               },
               {
                 title: "The Prophet Like Moses",
                 reference: "Deuteronomy 18:15–19",
-                text: "Moses prophesied of Jesus Christ, who would come to fulfill and expand the law. Christ's ministry was defined by reaching the poor, the sick, and the marginalized.",
+                url: "https://www.churchofjesuschrist.org/study/scriptures/ot/deut/18?lang=eng",
+                text: "Moses prophesied of Jesus Christ, who would come to fulfill and expand the law. Christ's ministry was defined by reaching the poor, the sick, and the marginalized — the very people the law of Moses commanded Israel to serve.",
                 lesson: "We follow Christ's example when we ensure our AI tools reach those who need them most.",
                 icon: "✝️",
               },
@@ -805,7 +958,14 @@ export default function Home() {
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-colors duration-200">
                   <div className="text-3xl mb-4">{card.icon}</div>
                   <h3 className="font-display text-lg font-semibold text-white mb-1">{card.title}</h3>
-                  <p className="text-[#A8C4FF] text-xs font-mono-data mb-3">{card.reference}</p>
+                  <a
+                    href={card.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#A8C4FF] text-xs font-mono-data mb-3 block hover:text-[#D4A843] hover:underline transition-colors"
+                  >
+                    ↗ {card.reference}
+                  </a>
                   <p className="text-[#C8D8F0] text-sm leading-relaxed mb-4">{card.text}</p>
                   <div className="border-t border-white/20 pt-4">
                     <p className="text-xs font-semibold text-[#D4A843] uppercase tracking-wide mb-1">For Our Team</p>
@@ -905,10 +1065,19 @@ export default function Home() {
                 The Promise
               </p>
               <blockquote className="font-display text-2xl sm:text-3xl italic text-white leading-relaxed mb-6 max-w-3xl mx-auto">
-                "For the LORD thy God will bless thee in all thy works, and in all that thou puttest
-                thine hand unto."
+                "Thou shalt surely give him, and thine heart shall not be grieved when thou givest unto him:
+                because that for this thing the LORD thy God shall bless thee in all thy works, and in all
+                that thou puttest thine hand unto."
               </blockquote>
-              <p className="text-[#A8C4FF] text-sm mb-8">— Deuteronomy 15:10</p>
+              <p className="text-[#A8C4FF] text-sm mb-2">— Deuteronomy 15:10</p>
+              <a
+                href="https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold text-[#D4A843] hover:underline flex items-center gap-1 justify-center mb-8"
+              >
+                ↗ Read Deuteronomy 15 (churchofjesuschrist.org)
+              </a>
               <p className="text-[#8A9AB5] max-w-2xl mx-auto leading-relaxed">
                 The same God who commanded Israel to release debts and open their hands wide is the
                 same God who can bless our team's work. When we build AI that serves the poor, the
@@ -930,34 +1099,79 @@ export default function Home() {
                 <span className="font-display font-semibold text-white">Democratizing AI</span>
               </div>
               <p className="text-[#8A9AB5] text-sm leading-relaxed">
-                A presentation connecting the Come Follow Me lesson for May 11–17 (Deuteronomy 15)
-                to our mission as AI developers.
+                A presentation connecting the Come Follow Me lesson for May 11–17 (Deuteronomy 6–8; 15; 18; 29–30; 34)
+                to our mission as AI developers. All scripture quotes verified against churchofjesuschrist.org.
               </p>
             </div>
             <div>
               <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wide">Key Scriptures</h4>
-              <ul className="space-y-2 text-[#8A9AB5] text-sm">
-                <li>Deuteronomy 15:1–15</li>
-                <li>Mosiah 4:16–26</li>
-                <li>4 Nephi 1:3</li>
-                <li>Jacob 2:13–19</li>
-                <li>2 Nephi 2:26–29</li>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Deuteronomy 15:1–15 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/4?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Mosiah 4:16–26 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/4-ne/1?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    4 Nephi 1:3 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/jacob/2?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Jacob 2:13–19 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/2-ne/2?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    2 Nephi 2:26–27 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/alma/1?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Alma 1:27, 30 ↗
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wide">Data Sources</h4>
-              <ul className="space-y-2 text-[#8A9AB5] text-sm">
-                <li>Microsoft AI Diffusion Report Q1 2026</li>
-                <li>UN Development Programme, Dec 2025</li>
-                <li>Visual Capitalist / Epoch AI, Apr 2026</li>
-                <li>AP News / UNDP Report, Dec 2025</li>
-                <li>Church of Jesus Christ CFM 2026</li>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Microsoft AI Diffusion Report Q1 2026 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://epoch.ai/data-insights/company-spending-breakdown" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Epoch AI Company Spending, Feb 2026 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.visualcapitalist.com/visualized-the-costs-of-ai-companies/" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Visual Capitalist / Epoch AI, Apr 2026 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.undp.org/sites/g/files/zskgke326/files/2025-12/why-ai-may-widen-inequality-between-countries.pdf" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    UNDP "Next Great Divergence", Dec 2025 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.churchofjesuschrist.org/study/manual/come-follow-me-for-home-and-church-old-testament-2026/20?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Come, Follow Me May 11–17 Lesson ↗
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-[#1C2A3A] pt-6 text-center">
             <p className="text-[#555] text-xs">
-              Prepared for AI Development Team · Come Follow Me Lesson May 11–17, 2026
+              Prepared for AI Development Team · Come Follow Me Lesson May 11–17, 2026 · All scriptures verified via churchofjesuschrist.org
             </p>
           </div>
         </div>
