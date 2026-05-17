@@ -26,12 +26,30 @@ const computeCostData = [
   { name: "Staff & Other", value: 2.90, color: "#D4A843" },
 ];
 
+// AI Subscription Pricing Tiers (May 2026 — verified from chatgpt.com/pricing)
+const pricingTierData = [
+  { tier: "Free", chatgpt: 0, claude: 0 },
+  { tier: "Entry ($8)", chatgpt: 8, claude: 0 },
+  { tier: "Standard ($20)", chatgpt: 20, claude: 20 },
+  { tier: "Pro ($100)", chatgpt: 100, claude: 100 },
+  { tier: "Max ($200)", chatgpt: 200, claude: 200 },
+];
+
+// Business token spend growth (Asia Times, Apr 2026)
+const tokenSpendData = [
+  { period: "Jan 2025", index: 1 },
+  { period: "Apr 2025", index: 3 },
+  { period: "Jul 2025", index: 6 },
+  { period: "Oct 2025", index: 9 },
+  { period: "Early 2026", index: 13 },
+];
+
 const aiGapTrendData = [
-  { year: "2023", developed: 12, developing: 7 },
-  { year: "2024", developed: 19, developing: 10 },
-  { year: "Q1 2025", developed: 23, developing: 12 },
-  { year: "Q3 2025", developed: 26, developing: 14 },
-  { year: "Q1 2026", developed: 27.5, developing: 15.4 },
+  { year: "H1 2024", developed: 14, developing: 5, note: "est." },
+  { year: "H2 2024", developed: 18, developing: 7, note: "est." },
+  { year: "H1 2025", developed: 22, developing: 10, note: "est." },
+  { year: "H2 2025", developed: 24.7, developing: 12, note: "verified" },
+  { year: "Q1 2026", developed: 27.5, developing: 15.4, note: "verified" },
 ];
 
 const principlesData = [
@@ -272,6 +290,7 @@ export default function Home() {
             <a href="#divide" className="hover:text-[#1B4FD8] transition-colors">The Divide</a>
             <a href="#principles" className="hover:text-[#1B4FD8] transition-colors">Principles</a>
             <a href="#action" className="hover:text-[#1B4FD8] transition-colors">Our Mission</a>
+            <a href="#discussion" className="hover:text-[#1B4FD8] transition-colors hidden md:block">Discussion</a>
           </div>
         </div>
       </nav>
@@ -521,23 +540,23 @@ export default function Home() {
                 cite: "Microsoft Q1 2026",
               },
               {
-                label: "Anthropic Compute Spend",
-                value: 9.7,
+                label: "Anthropic–Amazon Compute Deal",
+                value: 100,
                 prefix: "$",
-                suffix: "B",
-                note: "2025 Total (Epoch AI est.)",
+                suffix: "B+",
+                note: "10-yr AWS commitment (Apr 2026)",
                 color: "#D4A843",
-                url: "https://epoch.ai/data-insights/company-spending-breakdown",
-                cite: "Epoch AI 2026",
+                url: "https://www.anthropic.com/news/anthropic-amazon-compute",
+                cite: "Anthropic, Apr 2026",
               },
               {
-                label: "AI Adoption Gap",
-                value: 12.1,
-                suffix: "pts",
-                note: "Developed vs. Developing",
+                label: "Business Token Spend Growth",
+                value: 13,
+                suffix: "×",
+                note: "Jan 2025 → Early 2026",
                 color: "#5B8AF0",
-                url: "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf",
-                cite: "Microsoft Q1 2026",
+                url: "https://asiatimes.com/2026/04/token-inequality-ai-haves-and-ai-have-nots/",
+                cite: "Asia Times, Apr 2026",
               },
             ].map((stat, i) => (
               <ScrollReveal key={i} delay={i * 80}>
@@ -616,7 +635,7 @@ export default function Home() {
                 <h3 className="font-display text-lg font-semibold text-white mb-1">
                   Where AI Money Goes
                 </h3>
-                <p className="text-[#8A9AB5] text-xs mb-1">Anthropic 2025 spend breakdown ($9.7B total, Epoch AI est.)</p>
+                <p className="text-[#8A9AB5] text-xs mb-1">Anthropic 2025 spend breakdown ($9.7B total, Epoch AI est.) — compute scale has since exploded</p>
                 <a
                   href="https://epoch.ai/data-insights/company-spending-breakdown"
                   target="_blank"
@@ -666,6 +685,52 @@ export default function Home() {
             </ScrollReveal>
           </div>
 
+          {/* AI Pricing Stratification Chart */}
+          <ScrollReveal delay={150}>
+            <div className="mt-8 bg-[#252525] rounded-xl p-6">
+              <h3 className="font-display text-lg font-semibold text-white mb-1">
+                AI Subscription Pricing: The Growing Stratification
+              </h3>
+              <p className="text-[#8A9AB5] text-xs mb-1">Monthly cost per user — ChatGPT & Claude tiers (May 2026)</p>
+              <div className="flex flex-wrap gap-4 mb-4">
+                <a
+                  href="https://chatgpt.com/pricing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] font-semibold text-[#D4A843] hover:underline flex items-center gap-1"
+                >
+                  ↗ Source: OpenAI ChatGPT Pricing, May 2026
+                </a>
+                <a
+                  href="https://support.claude.com/en/articles/11049741-what-is-the-max-plan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] font-semibold text-[#D4A843] hover:underline flex items-center gap-1"
+                >
+                  ↗ Source: Anthropic Claude Max Plan, Apr 2026
+                </a>
+              </div>
+              <ResponsiveContainer width="100%" height={220}>
+                <BarChart data={pricingTierData} barGap={4}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                  <XAxis dataKey="tier" stroke="#666" tick={{ fontSize: 10, fill: "#aaa" }} />
+                  <YAxis stroke="#666" tick={{ fontSize: 11, fill: "#888" }} tickFormatter={(v) => `$${v}`} />
+                  <Tooltip
+                    formatter={(value: any, name: string) => [`$${value}/mo`, name]}
+                    contentStyle={{ background: "#1C1C1E", border: "none", borderRadius: 8, color: "#fff" }}
+                  />
+                  <Legend formatter={(value) => <span style={{ color: "#aaa", fontSize: 12 }}>{value}</span>} />
+                  <Bar dataKey="chatgpt" name="ChatGPT (OpenAI)" fill="#1B4FD8" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="claude" name="Claude (Anthropic)" fill="#C4622D" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+              <p className="text-[#666] text-xs mt-3 italic">
+                Note: The $20 flat-rate era is ending — PCWorld (May 1, 2026) reports flat subscriptions are "financially untenable" for providers.
+                Developer-grade access now starts at $100/month, putting serious AI tools out of reach for many.
+              </p>
+            </div>
+          </ScrollReveal>
+
           {/* AI Adoption by Region Bar Chart */}
           <ScrollReveal delay={100}>
             <div className="mt-8 bg-[#252525] rounded-xl p-6">
@@ -697,6 +762,47 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
+          {/* Business Token Spend Growth */}
+          <ScrollReveal delay={150}>
+            <div className="mt-8 bg-[#252525] rounded-xl p-6">
+              <h3 className="font-display text-lg font-semibold text-white mb-1">
+                Corporate AI Token Spend: 13× Growth in 14 Months
+              </h3>
+              <p className="text-[#8A9AB5] text-xs mb-1">Indexed growth — corporate America AI token spend (Jan 2025 = 1×)</p>
+              <a
+                href="https://asiatimes.com/2026/04/token-inequality-ai-haves-and-ai-have-nots/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-semibold text-[#D4A843] hover:underline flex items-center gap-1 mb-4"
+              >
+                ↗ Source: Asia Times "Token Inequality," Apr 18, 2026
+              </a>
+              <ResponsiveContainer width="100%" height={180}>
+                <LineChart data={tokenSpendData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                  <XAxis dataKey="period" stroke="#666" tick={{ fontSize: 11, fill: "#888" }} />
+                  <YAxis stroke="#666" tick={{ fontSize: 11, fill: "#888" }} tickFormatter={(v) => `${v}×`} />
+                  <Tooltip
+                    formatter={(value: any) => [`${value}× baseline`, "Token Spend Index"]}
+                    contentStyle={{ background: "#1C1C1E", border: "none", borderRadius: 8, color: "#fff" }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="index"
+                    name="Token Spend Index"
+                    stroke="#D4A843"
+                    strokeWidth={2.5}
+                    dot={{ fill: "#D4A843", r: 5 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+              <p className="text-[#666] text-xs mt-3 italic">
+                Enterprises with uncapped AI budgets are "operating in a categorically different professional reality" — Asia Times, Apr 2026.
+                Those without access are being handed "a calculator with a daily usage cap."
+              </p>
+            </div>
+          </ScrollReveal>
+
           {/* Globe Image + Quote */}
           <ScrollReveal delay={200}>
             <div className="mt-8 grid lg:grid-cols-2 gap-8 items-center">
@@ -720,6 +826,14 @@ export default function Home() {
                 >
                   ↗ "The Next Great Divergence" — UNDP, Dec 2025
                 </a>
+                <div className="bg-[#1B4FD8]/20 border border-[#1B4FD8]/30 rounded-lg p-4 mt-2">
+                  <p className="text-[#A8C4FF] text-xs font-semibold uppercase tracking-wide mb-2">2026 Update</p>
+                  <p className="text-[#C8D4E8] text-sm leading-relaxed">
+                    The North–South adoption gap is now <span className="text-white font-semibold">growing more than twice as fast</span> in developed nations.
+                    Only <span className="text-white font-semibold">5% of low-income country residents</span> have basic digital skills needed to use AI tools.
+                    <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/Microsoft-AI-Diffusion-Report-2026-Q1.pdf" target="_blank" rel="noopener noreferrer" className="text-[#D4A843] hover:underline ml-1 text-xs">↗ Microsoft Q1 2026</a>
+                  </p>
+                </div>
                 <p className="text-[#8A9AB5] text-sm leading-relaxed">
                   AI is becoming as essential as electricity, roads, and the internet. Without intentional
                   action, billions will be left behind — invisible in the data, excluded from the economy.
@@ -1089,6 +1203,152 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Team Discussion Guide ──────────────────────────────────────────── */}
+      <section id="discussion" className="py-20 bg-[#FAF6EF]">
+        <div className="container">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <p className="text-[#1B4FD8] text-xs font-semibold uppercase tracking-widest mb-3">
+                Team Devotional
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">
+                Discussion Guide
+              </h2>
+              <div className="section-divider w-24 mx-auto mb-6" />
+              <p className="text-[#555] max-w-2xl mx-auto leading-relaxed">
+                Use these questions to open a brief team discussion. There are no wrong answers —
+                the goal is to reflect honestly on our work, our values, and the world we are building.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="max-w-3xl mx-auto space-y-8">
+            {/* Question 1 */}
+            <ScrollReveal delay={100}>
+              <div className="bg-white rounded-2xl border border-[#E8DFD0] overflow-hidden shadow-sm">
+                <div className="bg-gradient-to-r from-[#1B4FD8] to-[#1540B0] px-8 py-5 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <span className="font-display font-bold text-white text-lg">1</span>
+                  </div>
+                  <div>
+                    <p className="text-[#A8C4FF] text-xs font-semibold uppercase tracking-widest mb-0.5">On Access & Stewardship</p>
+                    <h3 className="font-display text-lg font-semibold text-white leading-snug">
+                      Deuteronomy 15:11 commands us to "open thine hand wide" to the poor. In 2026, a developer with a $200/month AI budget works in a categorically different reality than one with a free tier. How should that gap shape the tools we build and the decisions we make about pricing, access, and open source?
+                    </h3>
+                  </div>
+                </div>
+                <div className="px-8 py-5">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="bg-[#FAF6EF] rounded-lg p-4">
+                      <p className="text-[#D4A843] text-xs font-semibold uppercase tracking-wide mb-2">📜 Scripture Anchor</p>
+                      <p className="text-[#555] text-sm leading-relaxed italic">
+                        "Thou shalt open thine hand wide unto thy brother, to thy poor, and to thy needy, in thy land."
+                      </p>
+                      <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#1B4FD8] text-xs hover:underline mt-1 block">↗ Deuteronomy 15:11</a>
+                    </div>
+                    <div className="bg-[#FAF6EF] rounded-lg p-4">
+                      <p className="text-[#1B4FD8] text-xs font-semibold uppercase tracking-wide mb-2">📊 2026 Data Point</p>
+                      <p className="text-[#555] text-sm leading-relaxed">
+                        Business token spend rose <strong>13×</strong> in 14 months. Only <strong>17.8%</strong> of the world's working-age population uses AI at all — and the gap is widening.
+                      </p>
+                      <a href="https://asiatimes.com/2026/04/token-inequality-ai-haves-and-ai-have-nots/" target="_blank" rel="noopener noreferrer" className="text-[#1B4FD8] text-xs hover:underline mt-1 block">↗ Asia Times, Apr 2026</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Question 2 */}
+            <ScrollReveal delay={200}>
+              <div className="bg-white rounded-2xl border border-[#E8DFD0] overflow-hidden shadow-sm">
+                <div className="bg-gradient-to-r from-[#C4622D] to-[#A04020] px-8 py-5 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <span className="font-display font-bold text-white text-lg">2</span>
+                  </div>
+                  <div>
+                    <p className="text-[#F0C8A8] text-xs font-semibold uppercase tracking-widest mb-0.5">On Purpose & Motivation</p>
+                    <h3 className="font-display text-lg font-semibold text-white leading-snug">
+                      Jacob 2:19 says to seek riches "for the intent to do good — to clothe the naked, and to feed the hungry, and to liberate the captive." What would it look like for our team to treat AI access as a form of liberation? What is one concrete thing we could do in the next quarter to extend access to someone who currently can't afford it?
+                    </h3>
+                  </div>
+                </div>
+                <div className="px-8 py-5">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="bg-[#FAF6EF] rounded-lg p-4">
+                      <p className="text-[#D4A843] text-xs font-semibold uppercase tracking-wide mb-2">📜 Scripture Anchor</p>
+                      <p className="text-[#555] text-sm leading-relaxed italic">
+                        "After ye have obtained a hope in Christ ye shall obtain riches, if ye seek them; and ye will seek them for the intent to do good."
+                      </p>
+                      <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/jacob/2?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#C4622D] text-xs hover:underline mt-1 block">↗ Jacob 2:19</a>
+                    </div>
+                    <div className="bg-[#FAF6EF] rounded-lg p-4">
+                      <p className="text-[#C4622D] text-xs font-semibold uppercase tracking-wide mb-2">💡 Consider</p>
+                      <p className="text-[#555] text-sm leading-relaxed">
+                        Open-source models (Llama, Mistral, DeepSeek), free educational tiers, and efficiency-first design are all forms of "liberating the captive" in the AI economy.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Question 3 */}
+            <ScrollReveal delay={300}>
+              <div className="bg-white rounded-2xl border border-[#E8DFD0] overflow-hidden shadow-sm">
+                <div className="bg-gradient-to-r from-[#0F2A7A] to-[#1B4FD8] px-8 py-5 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <span className="font-display font-bold text-white text-lg">3</span>
+                  </div>
+                  <div>
+                    <p className="text-[#A8C4FF] text-xs font-semibold uppercase tracking-widest mb-0.5">On the Year of Release</p>
+                    <h3 className="font-display text-lg font-semibold text-white leading-snug">
+                      Every seven years, Israel cancelled all debts so no permanent underclass could form. As AI costs rise and the gap widens, what "debt" could our team release this year — a proprietary tool, a closed dataset, a paywalled tutorial — to prevent a permanent intelligence underclass from forming?
+                    </h3>
+                  </div>
+                </div>
+                <div className="px-8 py-5">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="bg-[#FAF6EF] rounded-lg p-4">
+                      <p className="text-[#D4A843] text-xs font-semibold uppercase tracking-wide mb-2">📜 Scripture Anchor</p>
+                      <p className="text-[#555] text-sm leading-relaxed italic">
+                        "At the end of every seven years thou shalt make a release."
+                      </p>
+                      <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/deut/15?lang=eng" target="_blank" rel="noopener noreferrer" className="text-[#1B4FD8] text-xs hover:underline mt-1 block">↗ Deuteronomy 15:1</a>
+                    </div>
+                    <div className="bg-[#FAF6EF] rounded-lg p-4">
+                      <p className="text-[#1B4FD8] text-xs font-semibold uppercase tracking-wide mb-2">📊 2026 Context</p>
+                      <p className="text-[#555] text-sm leading-relaxed">
+                        Anthropic committed <strong>$100B+</strong> to compute over 10 years. Meanwhile, <strong>80%</strong> of AI-native startups are projected to fail by year-end due to compute costs alone.
+                      </p>
+                      <a href="https://www.anthropic.com/news/anthropic-amazon-compute" target="_blank" rel="noopener noreferrer" className="text-[#1B4FD8] text-xs hover:underline mt-1 block">↗ Anthropic + Amazon, Apr 2026</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Closing Prompt */}
+            <ScrollReveal delay={400}>
+              <div className="bg-[#1C1C1E] rounded-2xl p-8 text-center">
+                <p className="text-[#D4A843] text-xs font-semibold uppercase tracking-widest mb-3">Closing Reflection</p>
+                <blockquote className="font-display text-xl italic text-white leading-relaxed mb-4 max-w-xl mx-auto">
+                  "And now, for the sake of these things which I have spoken unto you... I would that ye should impart of your substance to the poor, every man according to that which he hath."
+                </blockquote>
+                <p className="text-[#A8C4FF] text-sm mb-2">— Mosiah 4:26</p>
+                <a
+                  href="https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/4?lang=eng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-[#D4A843] hover:underline flex items-center gap-1 justify-center"
+                >
+                  ↗ Read Mosiah 4 (churchofjesuschrist.org)
+                </a>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* ── Footer ─────────────────────────────────────────────────────────── */}
       <footer className="bg-[#0F1B2D] py-12">
         <div className="container">
@@ -1152,8 +1412,18 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.visualcapitalist.com/visualized-the-costs-of-ai-companies/" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
-                    Visual Capitalist / Epoch AI, Apr 2026 ↗
+                  <a href="https://www.anthropic.com/news/anthropic-amazon-compute" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Anthropic–Amazon $100B Compute Deal, Apr 2026 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://asiatimes.com/2026/04/token-inequality-ai-haves-and-ai-have-nots/" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    Asia Times "Token Inequality," Apr 2026 ↗
+                  </a>
+                </li>
+                <li>
+                  <a href="https://chatgpt.com/pricing/" target="_blank" rel="noopener noreferrer" className="text-[#8A9AB5] hover:text-[#D4A843] transition-colors">
+                    OpenAI ChatGPT Pricing, May 2026 ↗
                   </a>
                 </li>
                 <li>
