@@ -205,11 +205,8 @@ function vitePluginStorageProxy(): Plugin {
 
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
-// GitHub Pages deployment: set base to repo name when building for GH Pages
-const isGitHubPages = process.env.GITHUB_PAGES === 'true';
-
 export default defineConfig({
-  base: isGitHubPages ? '/democratizing-ai-thought/' : '/',
+  base: '/democratizing-ai-thought/',
   plugins,
   resolve: {
     alias: {

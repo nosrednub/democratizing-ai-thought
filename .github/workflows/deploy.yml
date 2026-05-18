@@ -29,7 +29,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        # version is read automatically from package.json "packageManager" field
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -37,7 +36,6 @@ jobs:
       - name: Build
         env:
           GITHUB_PAGES: "true"
-          # Stub out Manus-specific env vars so the build doesn't fail
           VITE_ANALYTICS_ENDPOINT: ""
           VITE_ANALYTICS_WEBSITE_ID: ""
           VITE_APP_ID: ""
