@@ -9,9 +9,6 @@ import Home from "./pages/Home";
 // Use the Vite base path so Wouter works correctly on GitHub Pages subpaths
 const BASE = import.meta.env.BASE_URL ?? '/';
 
-// Use the Vite base path so Wouter works correctly on GitHub Pages subpaths
-const BASE = import.meta.env.BASE_URL ?? '/';
-
 function Router() {
   return (
     <WouterRouter base={BASE.replace(/\/$/, '')}>
